@@ -3,7 +3,7 @@ public class Exams {
         
         System.out.println("It's time to take your 5th years exams. Please, take your seats.\n");
         //Task 1: Create an array that stores 5 students: "Malfoy", "Crabbe", "Goyle", "Pansy", "Dean"
-        
+        String[] students = {"Malfoy", "Crabbe", "Goyle", "Pansy", "Dean"};
         /**Task 2: Using a for loop, assign each student a seat according to their index in the array.
          
           for  ( ...) { 
@@ -11,6 +11,9 @@ public class Exams {
           }
          
          */
-        //    
+        //
+        for (int i = 0; i < students.length; i++) {
+            System.out.println(students[i] + ", you will take seet " + i + ".");
+        }
     }
 }

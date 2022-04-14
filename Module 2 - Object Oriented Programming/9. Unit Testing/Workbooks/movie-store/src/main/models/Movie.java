@@ -1,5 +1,7 @@
 package src.main.models;
 
+import java.util.Objects;
+
 public class Movie {
     private String name;
     private String format;
@@ -103,4 +105,16 @@ public class Movie {
                "\t Availability: " + (this.isAvailable ? "in-stock" : "rented") + "\n";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return Double.compare(movie.getRating(), getRating()) == 0 && Double.compare(movie.getSellingPrice(), getSellingPrice()) == 0 && Double.compare(movie.getRentalPrice(), getRentalPrice()) == 0 && isAvailable() == movie.isAvailable() && getName().equals(movie.getName()) && getFormat().equals(movie.getFormat());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getFormat(), getRating(), getSellingPrice(), getRentalPrice(), isAvailable());
+    }
 }

@@ -15,11 +15,15 @@ public class Dealership {
     }
 
     public Car getCar(int index) {
-        return new Car(this.cars[index]);
+        return this.cars[index] == null ? null : new Car(this.cars[index]);
     }
 
-    
-    public void sell(int index) {  
+
+    public void sell(int index) {
+        if (isEmpty()) {
+            throw new IllegalStateException("There are no more cars.");
+        }
+
         this.cars[index].drive();
         this.cars[index] = null;
     }
@@ -29,11 +33,22 @@ public class Dealership {
      *
      * @return (boolean)
      * Inside the function:
-     *   • returns true if there are no more cars.
-     * 
+     * • returns true if there are no more cars.
      */
+    public boolean isEmpty() {
+        int counter = 0;
+        for (int i = 0; i < cars.length; i++) {
+            if (this.cars[i] == null) {
+                counter++;
+            }
+        }
+        return counter == cars.length;
+    }
 
-     
+    public int getLength() {
+        return cars.length;
+    }
+
     public String toString() {
         String temp = "\n\n";
         for (int i = 0; i < this.cars.length; i++) {

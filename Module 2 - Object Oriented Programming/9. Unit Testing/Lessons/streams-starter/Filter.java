@@ -13,6 +13,11 @@ public class Filter {
 
         filterLowPrices();
 
+        System.out.println("With lambda");
+        prices.stream()
+                .filter(price -> price < 5)
+                .forEach(System.out::println);
+
     }
 
     public static void filterLowPrices() {

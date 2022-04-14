@@ -1,3 +1,5 @@
+import java.text.NumberFormat;
+
 public class Tip {
 
     public static void main(String[] args) {
@@ -6,6 +8,7 @@ public class Tip {
         System.out.println("Thank you!");
     
         //Task 2: Call a function that tips the waiter.
+        tipTheWaiter(bill);
     }
 
 
@@ -13,6 +16,13 @@ public class Tip {
     
     //Task 1: Make a function here. See the doc comment for details.  
 
+    static void tipTheWaiter(double bill){
+        double tip = bill * 0.15;
+        NumberFormat nf = NumberFormat.getCurrencyInstance();
+        String tipFormatted = nf.format(tip);
+        System.out.println("Your service was wonderful! Please, accept this tip: " +
+                tipFormatted);
+    }
     /**
      * Function name: tipTheWaiter - calculates a tip and prints it.
      * @param bill (double).

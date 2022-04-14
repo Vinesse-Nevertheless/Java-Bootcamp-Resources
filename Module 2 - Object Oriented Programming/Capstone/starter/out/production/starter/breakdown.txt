@@ -1,0 +1,46 @@
+                             Parent : Account
+                             Children : Personal and TFSA
+
+                             Accounts have the following fields:
+                             Map<String, Integer> portofolio to keep track of stock name and share count
+                             double funds
+
+                             Accounts have the following methods:
+                             public abstract void buy (stock name, number of shares);
+                             public abstract void sell (stock name, number of shares);
+                             Each child class will have own implementation of sell().
+                                -Personal: charge 5% fee --can be final constant
+                                -TFSA: charge 1% fee
+                             TFSA has own implementation of sell too:
+                                 -TFSA: charge 1% fee
+                             For TFSA: 1% fee can be final static constant.
+
+                             TRADE SHOULD BE ITS OWN CLASS LIKE TRANSACTION IN BANK.
+                             public MarketType enum for MARKET_BUY and MARKET_SELL.
+                             public StockType enum for AAPL, FB, GOOG, TSLA.
+                             (Don't forget to put MarketType and StockType in constructor).
+                             int shares for shares being purchased or sold.
+                             double stockPrice (for that day).
+                             Might need compareTo, equals, hashCode and toString here too.
+
+                              PERSONAL ACCOUNT
+
+A personal account has a portfolio and funds available.
+The investor's portfolio tracks how many shares they own of each stock.
+Buy trades made from a personal account are free.
+Sell trades made in a personal account are immediately charged a 5% fee.
+
+                              TFSA ACCOUNT
+
+A TFSA has a portfolio and funds available.
+The investor's portfolio tracks how many shares they own of each stock.
+Every trade (buy/sell) made from a TFSA is charged a 1% fee.
+
+                              TRADE
+
+A trade can be: MARKET_BUY or MARKET_SELL.
+A trade is identified by the:
+  - stock (AAPL, FB, GOOG, TSLA).
+  - type of trade ( MARKET_BUY, MARKET_SELL ).
+  - the amount of shares being purchased/sold.
+  - the price of the stock at that day.

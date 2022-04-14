@@ -9,9 +9,11 @@ public class HighScore {
         }
     
         int highScore = 0;
+        int seat = 0;
         for (int i = 0; i < scores.length; i++) {
             if (scores[i] > highScore) {
                 highScore = scores[i];
+                seat = i;
             }
         }
         /** Task 1 – Find the person with the highest score
@@ -20,6 +22,8 @@ public class HighScore {
          *   • It's the gentleman in seat: <index>. Give that man a cookie!
          *  
          */
+        System.out.println("\nThe highest score is: " + highScore + ".");
+        System.out.println("It's the gentleman in seat: " + seat + ". Give that man a cookie!");
     }
     
     public static int randomNumber() {

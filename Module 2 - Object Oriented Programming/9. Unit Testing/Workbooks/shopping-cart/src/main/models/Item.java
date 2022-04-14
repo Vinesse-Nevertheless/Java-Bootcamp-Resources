@@ -1,5 +1,7 @@
 package src.main.models;
 
+import java.util.Objects;
+
 public class Item {
     private String name;
     private double price;
@@ -48,4 +50,16 @@ public class Item {
         return name + ": $" + price + "   ";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return Double.compare(item.getPrice(), getPrice()) == 0 && getName().equals(item.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getPrice());
+    }
 }

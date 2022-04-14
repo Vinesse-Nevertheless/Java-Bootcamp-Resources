@@ -1,4 +1,6 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Map {
 
@@ -12,9 +14,19 @@ public class Map {
         prices.add(15.99);
 
         ArrayList<Double> withTax = new ArrayList<Double>();
-        tax(withTax);
+       // tax(withTax);
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        System.out.println("With lambda");
+        withTax.addAll(prices.stream()
+                .map(price -> df.format(price * 1.13))
+                .map(Double::parseDouble)
+                .collect(Collectors.toList()));
+
+        System.out.println(withTax);
 
     }
+
 
     public static void tax(ArrayList<Double> withTax) {
         for (int i = 0; i < prices.size(); i++) {

@@ -17,6 +17,16 @@ public class FizzBuzz {
             There are three conditions for Fizz, Buzz, and FizzBuzz. Be careful about their order. If something is FizzBuzz, it can also be Fizz or Buzz. 
         */
 
+        for (int i = 0; i < 19; i++) {
+            if (i % 3 == 0 && i % 5 == 0){
+                System.out.println(i + " FizzBuzz");
+            }else if (i % 3 == 0){
+                System.out.println(i + " Fizz");
+            }else if (i % 5 == 0){
+                System.out.println(i + " Buzz");
+            }
+        }
+
     }
 
 }

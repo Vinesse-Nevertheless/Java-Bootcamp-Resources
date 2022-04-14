@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Car {
     String make;
     String color;
@@ -28,5 +30,16 @@ public class Car {
         this.color = color;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return getMake().equals(car.getMake()) && getColor().equals(car.getColor());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMake(), getColor());
+    }
 }

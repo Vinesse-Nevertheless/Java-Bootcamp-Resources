@@ -15,6 +15,11 @@ public class Megaphone {
         //        8. If Java was easy, they would call it Python!
         //        9. If Java was easy, they would call it Python!
         //        10. If Java was easy, they would call it Python!
+
+        String phrase = "If Java was easy, they would call it Python!";
+        for (int i = 1; i < 11 ; i++) {
+            System.out.println(i + ". " + phrase);
+        }
     }
     
 }

@@ -1,4 +1,6 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class OperationChain {
 
@@ -12,8 +14,17 @@ public class OperationChain {
         prices.add(15.99);
 
         ArrayList<Double> updatePrices = new ArrayList<Double>();
-        filterLowPrices(updatePrices);
-        tax(updatePrices);
+       // filterLowPrices(updatePrices);
+       // tax(updatePrices);
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        updatePrices.addAll(prices.stream()
+                .filter(price -> price < 5)
+                .map(low -> df.format(low * 1.13))
+                .map(Double::parseDouble)
+                .collect(Collectors.toList()));
+
+        System.out.println(updatePrices);
 
     }
     

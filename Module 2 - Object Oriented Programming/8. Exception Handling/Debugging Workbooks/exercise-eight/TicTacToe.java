@@ -6,11 +6,21 @@ public class TicTacToe {
             {'_', '_', '_'}
         };
         
-        for (int i = 0; i < array.length; i++) {
-               array[i][2-i] = 'O';
-               array[2-i][2-i] = 'X';
-        }
+/*        for (int row = 0; row < array.length; row++) {
+            int start = row % 2 == 0 ? 0 : 1;
+            for (int column = start; column < array[row].length; column+=2) {
+                if (row == column) {
+                    array[row][column] = 'X';
+                }else{
+                    array[row][column] = 'O';
+                }
+            }
+        }*/
+        for (int row = 0; row < array.length; row++) {
+            array[2-row][2-row] = 'X';
+            array[row][2-row] = 'O';
 
+        }
         printArray(array);
         System.out.println("\nO WINS!\n");
    }

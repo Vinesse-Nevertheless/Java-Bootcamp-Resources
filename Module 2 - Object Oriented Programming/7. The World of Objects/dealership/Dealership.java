@@ -1,5 +1,8 @@
+import java.util.Scanner;
+
 public class Dealership {
     private Car[] cars;
+    private String wantToBuy;
 
     public Dealership(Car[] cars) {
         this.cars = new Car[cars.length];
@@ -21,6 +24,9 @@ public class Dealership {
         this.cars[index] = null;
     }
 
+    public String getWantToBuy(){
+        return wantToBuy;
+    }
     /** Task 2 - Re-write the search action.
      * Function name: search
      *
@@ -39,15 +45,22 @@ public class Dealership {
      *     • println: \nYour search didn't match any results.\n
      *     • returns 404
      */
-    public String search(String make, int budget) {
+
+
+    public int search(String make, int budget) {
         for (int i = 0; i < this.cars.length; i++) {
             if (this.cars[i] == null) {
                 continue;
-            } else if (this.cars[i].getMake().equals(make) && this.cars[i].getPrice() <= budget) {
-                return "\nWe found one in spot " + i + "\n" + this.cars[i].toString() + "\nAre you interested ?";
+            } else if (this.cars[i].getPrice() <= budget && this.cars[i].getMake().equalsIgnoreCase(make)) {
+                System.out.println("We found one in spot " + i +
+                        "\n\n" + this.cars[i].toString() + "\nIf you're interested type 'yes': ");
+                Scanner scan = new Scanner(System.in);
+                wantToBuy = scan.nextLine();
+            return i;
             }
         }
-        return "Sorry, we couldn't find any cars.";
+        System.out.println("Your search didn't match any results.\n");
+        return 404;
     }
 
     public String toString() {

@@ -1,0 +1,8 @@
+TEST WHEN USER
+
+1. Sells before buying anything.  Says trade is unsuccessful.
+2. Makes incorrect stock entry.  Asks you to keep entering a stock until you pick from one of the enums.
+3. Makes negative number share entry for buying and selling. Keeps prompting user until integer is entered.
+4. User tries to buy fraction of share. User is prompted until whole share is entered.
+5. Test that user can't buy any more stocks when balance is 0.  Next trade is unsuccessful if balance is 0.
+6. Test stopping as very first operation.  With changes in code, this test no longer makes sense.
