@@ -44,28 +44,40 @@ Your children classes must inherit this toString.
         "\n\n" + displayPortofolio() + Color.RESET +
         "\n  Funds Left\t" + Color.GREEN + "$" + round(this.getFunds()) + Color.RESET;
     }
+    
 ### e) Main
+
 Your Main class contains pre-defined methods.
 
+
 <b>Part 1</b>
+
 First, call the method that explains the application to the user.
 
+
 <b>Part 2</b>
+
 After the user chooses an account, call the method that displays their initial balance.
 
+
 <b>Part 3</b>
+
 There are 2160 records in each CSV file. Create a loop that runs from 1 to 2160.
 
 During each run, display the prices (see part 4 first).
 
+
 <b>Part 4</b>
+
 You must learn to stream the elements of a CSV file. Inside getPath(), use the following code to return the Path of the CSV file.
 
 Path path = Paths.get(Thread.currentThread().getContextClassLoader().getResource("src/main/data/"+stock+".csv").toURI());
 
 Catch the checked exception as needed. Windows users, remember to use the backslash.
 
+
 <b>Part 5</b>
+
 Complete the getPrice() method.
 
 <b>Hints:</b>
@@ -83,7 +95,9 @@ Complete the getPrice() method.
     .findFirst()
     .orElse(null)
     
+    
 <b>Part 6</b>
+
 After displaying the prices, ask the user to
 
 - buyOrSell()
@@ -93,5 +107,6 @@ After displaying the prices, ask the user to
 Then execute the buy/sell trade with your Account object.
 
 <b>Part 7</b>
+
 
 Call tradeStatus() to notify the user of a "successful" or "unsuccessful" trade.
