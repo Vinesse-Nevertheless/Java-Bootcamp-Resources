@@ -42,20 +42,13 @@ public class Main {
     }
 
     public static void accountSetup(){
-        String choice = choiceAccount();
+        String choice = chooseAccount();
         account = createAccount(choice);
         account.setPortofolio(portfolio);
         setInitialBalance();
     }
 
-    public static void setInitialBalance() {  //renamed from initial balance which sounds like a variable
-        System.out.print("\n\n  You created a " + Color.YELLOW + account.getClass().getSimpleName() + Color.RESET + " account.");
-        System.out.println(" Your account balance is " + Color.GREEN + "$" + account.getFunds() + Color.RESET);
-        System.out.print("\n  Enter anything to start trading: ");
-        scanner.nextLine();
-    }
-
-    public static String choiceAccount() { //renamed from accountChoice which sounds like a variable
+    public static String chooseAccount() { //renamed from accountChoice which sounds like a variable
         System.out.print("\n  Respectively, type 'a' or 'b' to create a Personal account or TFSA: ");
         String choice = scanner.nextLine();
         while (!choice.equals("a") && !choice.equals("b")) {
@@ -79,6 +72,13 @@ public class Main {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    public static void setInitialBalance() {  //renamed from initial balance which sounds like a variable
+        System.out.print("\n\n  You created a " + Color.YELLOW + account.getClass().getSimpleName() + Color.RESET + " account.");
+        System.out.println(" Your account balance is " + Color.GREEN + "$" + account.getFunds() + Color.RESET);
+        System.out.print("\n  Enter anything to start trading: ");
+        scanner.nextLine();
     }
 
     public static void displayPrices(int day) {
@@ -198,7 +198,7 @@ public class Main {
                 didTrade = account.sell(trade);
                 break;
         }
-     return didTrade;
+        return didTrade;
     }
 
     //Instructor originally had a String as parameter, but I changed it to boolean
@@ -214,10 +214,10 @@ public class Main {
         //that there was no way for the user to gracefully exit the program
         //or close the Scanner since not doing so could cause a memory leak.
 
-            System.out.println("\n  Thank you for trading!");
-            System.out.println("  Here's your closing portfolio:");
-            System.out.println(account);
-            scanner.close();
-            System.exit(0);
-        }
+        System.out.println("\n  Thank you for trading!");
+        System.out.println("  Here's your closing portfolio:");
+        System.out.println(account);
+        scanner.close();
+        System.exit(0);
+    }
 }

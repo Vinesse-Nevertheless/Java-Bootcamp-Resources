@@ -23,24 +23,29 @@ public class Main {
         service.execute( () -> increment(files[0]));
         service.execute( () -> increment(files[1]));
         service.execute( () -> increment(files[2]));
-           /* Scanner scan = new Scanner(System.in);
+            Scanner scan = new Scanner(System.in);
             System.out.print("Please enter your name to access the Global Superstore data: ");
             String name = scan.nextLine();
             System.out.println("\nThank you " + name + ".\n");
-            scan.close();*/
+            scan.close();
+
+        System.out.println("Sample size: " + sampleSize);
+        System.out.println("Quantity sold: " + quantitySold);
 service.shutdown();
     }
 
-    public static void increment(String file){
+    //Use synchronized because I believe that's more favored
+    //than re-entrant locks and countdown latches!
+    public static synchronized void increment(String file){
+
         try {
-        Path path = Paths.get(Thread.currentThread().getContextClassLoader().getResource(file).toURI());
+            Path path = Paths.get(Thread.currentThread().getContextClassLoader().getResource(file).toURI());
 
             Files.lines(path)
-                    .parallel()
                     .skip(1)
                     .map(line -> line.split(","))
-                    .mapToInt(array -> Integer.parseInt(array[2]))
-                    .forEachOrdered(quantity -> System.out.println(sampleSize++ + " " +  (quantitySold += quantity)));
+                    .mapToInt(line -> Integer.parseInt(line[2]))
+                    .forEach(quantity -> {sampleSize++; quantitySold +=quantity;});  //printing here causes the samplesize to be 1 less than expected
         } catch (IOException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
