@@ -44,7 +44,7 @@ public class Main {
     public static void accountSetup(){
         String choice = chooseAccount();
         account = createAccount(choice);
-        account.setPortofolio(portfolio);
+        account.setPortfolio(portfolio);
         setInitialBalance();
     }
 
@@ -61,10 +61,6 @@ public class Main {
     public static Account createAccount(String choice) {
         String accountType = choice.equals("a") ? "Personal" : "TFSA";
         try {
-            /* I actually preferred my previous method of only showing the stock in
-             * the purchased stock in the portfolio by making newInstance (new HashMap<>(), INITIAL DEPOSIT)
-             * and leaving out initializing portfolio here.
-             * Instead, the instruction wanted us to show zero values.*/
             return ((Account) Class.forName("src.main.model.account." + accountType)
                     .getConstructor(Map.class, double.class)
                     .newInstance(portfolio, INITIAL_DEPOSIT));
@@ -74,7 +70,7 @@ public class Main {
         return null;
     }
 
-    public static void setInitialBalance() {  //renamed from initial balance which sounds like a variable
+    public static void setInitialBalance() {  //renamed from initialBalance which sounds like a variable
         System.out.print("\n\n  You created a " + Color.YELLOW + account.getClass().getSimpleName() + Color.RESET + " account.");
         System.out.println(" Your account balance is " + Color.GREEN + "$" + account.getFunds() + Color.RESET);
         System.out.print("\n  Enter anything to start trading: ");
@@ -142,23 +138,21 @@ public class Main {
         return testForPositiveInt(choice);
     }
 
-    //separated out validator methods to make them clear
-    //what they are doing and separate concerns
     public static void testForInt(String choice){
-        while(!scanner.hasNextInt()){ //added check to prevent buying partial shares.
+        while(!scanner.hasNextInt()){
             System.out.print("  Enter the number of shares you'd like to " + choice + ": ");
-            scanner.nextLine(); //throwaway nextLine
+            scanner.nextLine();
         }
     }
 
     public static int testForPositiveInt(String choice){
         int shares = scanner.nextInt();
-        scanner.nextLine(); //throwaway nextLine
+        scanner.nextLine();
         while (shares <= 0) {
             System.out.print("  Enter the number of shares you'd like to " + choice + ": ");
             testForInt(choice);
             shares = scanner.nextInt();
-            scanner.nextLine(); //throwaway nextLine
+            scanner.nextLine();
         }
         return shares;
     }
@@ -209,11 +203,10 @@ public class Main {
         System.out.println(account);
     }
 
+    //I added this method because I thought it was strange
+    //that there was no way for the user to gracefully exit the program
+    //or close the Scanner since not doing so could cause a memory leak.
     public static void endTrading(){
-        //I added this method because I thought it was strange
-        //that there was no way for the user to gracefully exit the program
-        //or close the Scanner since not doing so could cause a memory leak.
-
         System.out.println("\n  Thank you for trading!");
         System.out.println("  Here's your closing portfolio:");
         System.out.println(account);

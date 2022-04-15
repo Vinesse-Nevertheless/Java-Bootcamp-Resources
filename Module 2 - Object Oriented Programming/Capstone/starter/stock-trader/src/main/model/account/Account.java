@@ -27,7 +27,7 @@ public abstract class Account {
         return new HashMap<>(portfolio);
     }
 
-    public void setPortofolio(Map<String, Integer> portfolio) {
+    public void setPortfolio(Map<String, Integer> portfolio) {
         this.portfolio = new HashMap<>(portfolio);
     }
 

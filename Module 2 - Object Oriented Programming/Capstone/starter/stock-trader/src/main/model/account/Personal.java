@@ -20,16 +20,17 @@ public static final double SALE_FEE = 0.05;
         int shareCount = trade.getShareCount();
         double price = trade.getStockPrice();
 
-        if (getFunds() >= shareCount * price){
-            setFunds(getFunds() - (shareCount * price));
-            if(portfolio.containsKey(stockName)) {
-                setPortfolioShareCount(stockName, getPortfolioShareCount(stockName) + shareCount);
-            }else{
-                setPortfolioShareCount(stockName, shareCount);
-            }
-            return true;
+        if (getFunds() < shareCount * price) {
+            return false;
         }
-        return false;
+
+        setFunds(getFunds() - (shareCount * price));
+        if(portfolio.containsKey(stockName)) {
+            setPortfolioShareCount(stockName, getPortfolioShareCount(stockName) + shareCount);
+        }else{
+            setPortfolioShareCount(stockName, shareCount);
+        }
+        return true;
     }
 
         @Override

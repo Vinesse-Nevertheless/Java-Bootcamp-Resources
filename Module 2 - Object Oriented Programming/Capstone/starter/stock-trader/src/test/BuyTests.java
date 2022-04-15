@@ -51,10 +51,10 @@ public class BuyTests {
     public void testInsufficientFunds() {
         Trade fb =
                 new Trade(Trade.Stock.FB, 1000, 2.0, Trade.MarketType.MARKET_BUY);
-        Trade goog = new Trade(Trade.Stock.GOOG, 500, 2.0, Trade.MarketType.MARKET_BUY);
+        Trade goog = new Trade(Trade.Stock.GOOG, 50, 2.0, Trade.MarketType.MARKET_BUY);
 
-        boolean buy = accounts[0].buy(fb);
-        boolean sell = accounts[1].buy(goog);
+        boolean buy1 = accounts[0].buy(fb);
+        boolean buy2 = accounts[1].buy(goog);
 
         assertEquals(10, accounts[0].getPortfolio().get(String.valueOf(fb.getStockType())));
         assertEquals(35, accounts[1].getPortfolio().get(String.valueOf(goog.getStockType())));
