@@ -2,6 +2,10 @@
 
 Workbook exercise that tests the Online Java Store.
 
+The Shopping Cart lets users add, remove, and check items out.
+They can add an item that wasn't already added.
+The checkout process returns a receipt that holds the subtotal, tax, and total.
+
 The Java store is divided into aisles (rows).
 Each aisle shelves a category of items.
 Each item is described by its name and price.
