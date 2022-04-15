@@ -15,19 +15,19 @@ public class StoreTest {
     @BeforeEach
     public void setup() {
         store = new Store();
-        store.addMovie(new Movie("The Shawshank Redemption", "Blue-Ray", 9.2));
-        store.addMovie(new Movie("The Godfather", "Blue-Ray", 9.1));
+        store.addMovie(new Movie("The Shawshank Redemption", Movie.Format.BLUE_RAY, 9.2));
+        store.addMovie(new Movie("The Godfather", Movie.Format.BLUE_RAY, 9.1));
     }
 
     @Test
     public void movieAdded() {
-        assertTrue(store.contains(new Movie("The Godfather", "Blue-Ray", 9.1)));
+        assertTrue(store.contains(new Movie("The Godfather", Movie.Format.BLUE_RAY, 9.1)));
     }
 
     @Test
     public void sellMovieTest() {
         store.sellMovie("The Godfather");
-        assertFalse(store.contains(new Movie("The Godfather", "Blue-Ray", 9.1)));
+        assertFalse(store.contains(new Movie("The Godfather", Movie.Format.BLUE_RAY, 9.1)));
     }
 
     @Test

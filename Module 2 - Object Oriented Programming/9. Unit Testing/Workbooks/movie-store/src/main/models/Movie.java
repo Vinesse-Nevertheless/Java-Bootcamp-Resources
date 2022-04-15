@@ -4,27 +4,33 @@ import java.util.Objects;
 
 public class Movie {
     private String name;
-    private String format;
+  //  private String format;
     private double rating;
     private double sellingPrice;
     private double rentalPrice;
     private boolean isAvailable;
+    public Format format;
 
-    public Movie(String name, String format, double rating) {
+    public static final double sellingPriceBlueRay = 4.25;
+    public static final double sellingPriceDVD = 2.25;
+    public static final double rentalPriceBlueRay = 1.99;
+    public static final double rentalPriceDVD = 0.99;
+
+    public enum Format {BLUE_RAY, DVD}
+
+    public Movie(String name, Format format, double rating) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("name must contain a value");
         }
-        if (!(format.equals("DVD") || format.equals("Blue-Ray"))) {
-            throw new IllegalArgumentException("format must be DVD or Blue-Ray");
-        }
+
         if (rating < 0 || rating > 10) {
             throw new IllegalArgumentException("Invalid rating");
         }
         this.name = name;
         this.format = format;
         this.rating = rating;
-        this.sellingPrice = format.equals("Blue-Ray") ? 4.25 : 2.25;
-        this.rentalPrice = format.equals("Blue-Ray") ? 1.99 : 0.99;
+        this.sellingPrice = format.name().equals("BLUE_RAY") ? sellingPriceBlueRay : sellingPriceDVD;
+        this.rentalPrice = format.name().equals("BLUE_RAY") ? rentalPriceBlueRay : rentalPriceDVD;
         this.isAvailable = true;
     }
 
@@ -41,7 +47,7 @@ public class Movie {
         return name;
     }
     
-    public String getFormat() {
+    public Format getFormat() {
         return format;
     }
 
@@ -68,13 +74,10 @@ public class Movie {
         this.name = name;
     }
 
-    public void setFormat(String format) {
-        if (!(format.equals("DVD") || format.equals("Blue-Ray"))) {
-            throw new IllegalArgumentException("format must be DVD or Blue-Ray");
-        }
+    public void setFormat(Format format) {
         this.format = format;
-        setSellingPrice(format.equals("Blue-Ray") ? 4.25 : 2.25);
-        setRentalPrice(format.equals("Blue-Ray") ? 1.99 : 0.99);
+        setSellingPrice(format.name().equals("BLUE_RAY") ? sellingPriceBlueRay : sellingPriceDVD);
+        setRentalPrice(format.name().equals("BLUE_RAY") ? rentalPriceBlueRay : rentalPriceDVD);
     }
 
     public void setRating(double rating) {
