@@ -1,4 +1,4 @@
-Movie Store
+# Movie Store
 
 Workbook exercise that tests the Java Video Store.
 
