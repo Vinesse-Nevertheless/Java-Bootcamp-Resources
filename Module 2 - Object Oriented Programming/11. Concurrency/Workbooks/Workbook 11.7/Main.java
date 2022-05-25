@@ -34,9 +34,9 @@ public class Main {
 service.shutdown();
     }
 
-    //Use synchronized because I believe that's more favored
+    //Used synchronized because I believe that's more favored
     //than re-entrant locks and countdown latches!
-    public static void increment(String file){
+    public static synchronized void increment(String file){
 
         try {
             Path path = Paths.get(Thread.currentThread().getContextClassLoader().getResource(file).toURI());
